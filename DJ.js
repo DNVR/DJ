@@ -1,6 +1,7 @@
 /*!
 * DJ
 * Copyright 2015 DNVR
+* To be used only in modern browsers and IE10+
 */
 
 (function ( window, document, undefined ) {
@@ -213,6 +214,13 @@
 
     return target
   }
+
+  // Matches shim
+  (function ( shim ) {
+
+    shim.matches = shim.matches || shim.webkitMatchesSelector || shim.mozMatchesSelector || msMatchesSelector
+
+  })( HTMLElement.prototype )
 
   // Defining the DJ class and its essential methods
   function DJ ( selector ) {
