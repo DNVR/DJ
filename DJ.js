@@ -234,6 +234,8 @@
   DJ.Discovered = {}
 
   DJ.Data = Data
+  
+  DJ.DataStore = DataStore
 
   DJ.Extend = Extend
 
