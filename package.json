@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/DNVR/DJ/issues"
   },
-  "homepage": "https://github.com/DNVR/DJ#readme"
+  "homepage": "https://github.com/DNVR/DJ#readme",
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "typescript": "^4.0.2"
+  }
 }
