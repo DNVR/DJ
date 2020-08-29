@@ -1,0 +1,19 @@
+{
+  "name": "@dnvr/dj",
+  "version": "1.0.0",
+  "description": "A JavaScript library for simplification of DOM manipulation...",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DNVR/DJ.git"
+  },
+  "author": "Denver Dias",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DNVR/DJ/issues"
+  },
+  "homepage": "https://github.com/DNVR/DJ#readme"
+}
