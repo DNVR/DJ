@@ -25,6 +25,6 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
-    "@dnvr/array-methods": "^1.0.3"
+    "@dnvr/array-methods": "^1.0.5"
   }
 }
