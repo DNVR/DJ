@@ -325,15 +325,15 @@ class DJClass {
     return this
   }
 
-  split (): Array<DJClass> {
+  explode (): Array<DJClass> {
     return map( this, splitter, this )
   }
 
   filter ( f: ( this: this ) => boolean ): DJClass
-  filter ( f: ( this: this, entry: HTMLElement ) => boolean ): DJClass
-  filter ( f: ( this: this, entry: HTMLElement, index: number ) => boolean ): DJClass
+  filter ( f: ( this: this, entry: DJClass ) => boolean ): DJClass
+  filter ( f: ( this: this, entry: DJClass, index: number ) => boolean ): DJClass
   filter ( f: any ): DJClass {
-    return combinator( ...this.split().filter( f, this ) )
+    return combinator( ...this.explode().filter( f, this ) )
   }
 }
 
