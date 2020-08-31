@@ -335,6 +335,34 @@ class DJClass {
   filter ( f: any ): DJClass {
     return combinator( ...this.explode().filter( f, this ) )
   }
+
+  text (): string
+  text ( s: string ): this
+  text ( s?: string ) {
+    if ( 'string' === typeof s ) {
+      this.each( ( e: HTMLElement ) => {
+        e.textContent = s
+      } )
+      return this
+    }
+    else {
+      return this.element( 0 )?.textContent
+    }
+  }
+
+  html (): string
+  html ( h: string ): this
+  html ( h?: string ) {
+    if ( 'string' === typeof h ) {
+      this.each( ( e: HTMLElement ) => {
+        e.innerHTML = h
+      } )
+      return this
+    }
+    else {
+      return this.element( 0 )?.innerHTML
+    }
+  }
 }
 
 let k: DJClass = new DJClass
