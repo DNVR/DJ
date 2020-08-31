@@ -1,5 +1,5 @@
 import {
-  push, forEach
+  push, forEach, filter, map, concat
 } from '@dnvr/array-methods'
 
 // Common strings
@@ -254,6 +254,13 @@ function DJ ( selector ) {
   return new initialise( selector )
 }
 
+function splitter ( entry: HTMLElement ): DJClass {
+  return new DJClass( entry )
+}
+function combinator ( ...entry: DJClass[] ): DJClass {
+  return new DJClass( concat( ...entry ) )
+}
+
 class DJClass {
 
   [ index: number ]: HTMLElement
@@ -268,7 +275,7 @@ class DJClass {
     else if ( entry instanceof HTMLElement ) {
       this.add( entry as HTMLElement )
     }
-    else if ( entry instanceof HTMLCollection || entry instanceof NodeList ) {
+    else if ( Reflect.has( entry, 'length' ) ) {
       this.add( ...entry as Array<HTMLElement> )
     }
   }
@@ -298,39 +305,63 @@ class DJClass {
     }
   }
 
+  first (): DJClass {
+    return this.index( 0 )
+  }
+  last (): DJClass {
+    return this.index( -1 )
+  }
+
   add ( ...elements: HTMLElement[] ) {
     push( this, ...elements )
   }
 
-  each ( f: ( this: this, entry?: HTMLElement, index?: number ) => void ): this {
+  each ( f: ( this: this ) => void ): this
+  each ( f: ( this: this, entry: HTMLElement ) => void ): this
+  each ( f: ( this: this, entry: HTMLElement, index: number ) => void ): this
+  each ( f: any ): this {
     forEach( this, f, this )
 
     return this
   }
+
+  split (): Array<DJClass> {
+    return map( this, splitter, this )
+  }
+
+  filter ( f: ( this: this ) => boolean ): DJClass
+  filter ( f: ( this: this, entry: HTMLElement ) => boolean ): DJClass
+  filter ( f: ( this: this, entry: HTMLElement, index: number ) => boolean ): DJClass
+  filter ( f: any ): DJClass {
+    return combinator( ...this.split().filter( f, this ) )
+  }
 }
 
-namespace DJClass {
-}
+let k: DJClass = new DJClass
 
-const DJAccess: {
-  new (): DJClass
-  new ( element: HTMLElement ): DJClass
-  new ( array: ArrayLike<HTMLElement> ): DJClass
+interface IDJ {
+  new(): DJClass
+  new( element: HTMLElement ): DJClass
+  new( array: ArrayLike<HTMLElement> ): DJClass
 
   (): DJClass
   ( element: HTMLElement ): DJClass
   ( array: ArrayLike<HTMLElement> ): DJClass
-} = <any>new Proxy( DJClass, {
+
+  prototype: DJClass
+}
+
+const DJAccess: IDJ = <any> new Proxy( DJClass, {
   getPrototypeOf ( target: typeof DJClass ) {
     return target
   },
-  apply ( target: typeof DJClass, thisArg: never, argArray: ConstructorParameters<typeof DJClass> ) {
-    return new DJAccess( ... argArray )
+  apply ( _target: typeof DJClass, _thisArg: any, argArray: ConstructorParameters<typeof DJClass> ) {
+    return new DJAccess( ...argArray )
   },
-  construct ( target: typeof DJClass, args: ConstructorParameters<typeof DJClass>, newTarget: never ) {
+  construct ( target: typeof DJClass, args: ConstructorParameters<typeof DJClass> ) {
     let [ selector ] = args
 
-    if ( selector instanceof target ) {
+    if ( selector instanceof DJAccess ) {
       return selector
     }
     else if ( 'string' === typeof selector ) {
