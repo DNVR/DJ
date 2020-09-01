@@ -266,6 +266,14 @@ class DJClass {
   [ index: number ]: HTMLElement
   length: number = 0
 
+  static isUndefined ( candidate: any ): candidate is undefined {
+    return undefined === candidate
+  }
+
+  static isNull ( candidate: any ): candidate is null {
+    return null === candidate
+  }
+
   constructor ()
   constructor ( element: HTMLElement )
   constructor ( array: ArrayLike<HTMLElement> )
