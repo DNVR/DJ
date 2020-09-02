@@ -274,8 +274,8 @@ class DJClass {
     return null === candidate
   }
 
-
-  static instanceOf<K, L> ( candidate: K, clas: { new(): L } ): boolean {
+  static instanceOf<K extends L, L> ( candidate: K, clas: { new( ...args: any[] ): L } ): true
+  static instanceOf<K, L> ( candidate: K, clas: { new( ...args: any[] ): L } ): boolean {
     return candidate instanceof clas
   }
 
@@ -342,12 +342,13 @@ class DJClass {
     return map( this, splitter, this )
   }
 
-  filter ( f: ( this: this ) => boolean ): DJClass
-  filter ( f: ( this: this, entry: DJClass ) => boolean ): DJClass
-  filter ( f: ( this: this, entry: DJClass, index: number ) => boolean ): DJClass
-  filter ( f: any ): DJClass {
-    return combinator( ...this.explode().filter( f, this ) )
-  }
+  // filter ( selector: string ): DJClass
+  // filter ( f: ( this: this ) => boolean ): DJClass
+  // filter ( f: ( this: this, entry: DJClass ) => boolean ): DJClass
+  // filter ( f: ( this: this, entry: DJClass, index: number ) => boolean ): DJClass
+  // filter ( f: any ): DJClass {
+  //   return combinator( ...this.explode().filter( f, this ) )
+  // }
 
   text (): string
   text ( s: string ): this
