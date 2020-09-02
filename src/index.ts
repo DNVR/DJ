@@ -274,6 +274,11 @@ class DJClass {
     return null === candidate
   }
 
+
+  static instanceOf<K, L> ( candidate: K, clas: { new(): L } ): boolean {
+    return candidate instanceof clas
+  }
+
   constructor ()
   constructor ( element: HTMLElement )
   constructor ( array: ArrayLike<HTMLElement> )
