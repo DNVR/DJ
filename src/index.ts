@@ -342,13 +342,23 @@ class DJClass {
     return map( this, splitter, this )
   }
 
-  // filter ( selector: string ): DJClass
-  // filter ( f: ( this: this ) => boolean ): DJClass
-  // filter ( f: ( this: this, entry: DJClass ) => boolean ): DJClass
-  // filter ( f: ( this: this, entry: DJClass, index: number ) => boolean ): DJClass
-  // filter ( f: any ): DJClass {
-  //   return combinator( ...this.explode().filter( f, this ) )
-  // }
+  is ( selector: string ): boolean {
+    let el = this.element( 0 )
+    if ( el === null ) {
+      return false
+    }
+    else {
+      return el.matches( selector )
+    }
+  }
+
+  filter ( selector: string ): DJClass
+  filter ( f: ( this: this ) => boolean ): DJClass
+  filter ( f: ( this: this, entry: DJClass ) => boolean ): DJClass
+  filter ( f: ( this: this, entry: DJClass, index: number ) => boolean ): DJClass
+  filter ( f: any ): DJClass {
+    return combinator( ...this.explode().filter( f, this ) )
+  }
 
   text (): string
   text ( s: string ): this
