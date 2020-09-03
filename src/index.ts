@@ -356,8 +356,13 @@ class DJClass {
   filter ( f: ( this: this ) => boolean ): DJClass
   filter ( f: ( this: this, entry: DJClass ) => boolean ): DJClass
   filter ( f: ( this: this, entry: DJClass, index: number ) => boolean ): DJClass
-  filter ( f: any ): DJClass {
-    return combinator( ...this.explode().filter( f, this ) )
+  filter ( entry: any ): DJClass {
+    if ( 'string' === typeof entry ) {
+      return combinator( ...this.explode().filter( function ( this: string, e: DJClass ) { return e.is( this.valueOf() ) }, entry ) )
+    }
+    else {
+      return combinator( ...this.explode().filter( entry, this ) )
+    }
   }
 
   text (): string
