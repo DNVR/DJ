@@ -7,10 +7,10 @@ var asterisk = '*'
 var empty = ''
 
 // Common internal checker functions
-const isUndefined = function ( candidate: any ): candidate is undefined {
+function isUndefined ( candidate: any ): candidate is undefined {
   return candidate === undefined
 }
-const isNull = function ( candidate: any ): candidate is null {
+function isNull ( candidate: any ): candidate is null {
   return candidate === null
 }
 
@@ -266,13 +266,9 @@ class DJClass {
   [ index: number ]: HTMLElement
   length: number = 0
 
-  static isUndefined ( candidate: any ): candidate is undefined {
-    return undefined === candidate
-  }
+  static isUndefined = isUndefined
 
-  static isNull ( candidate: any ): candidate is null {
-    return null === candidate
-  }
+  static isNull = isNull
 
   static instanceOf<K extends L, L> ( candidate: K, clas: { new( ...args: any[] ): L } ): true
   static instanceOf<K, L> ( candidate: K, clas: { new( ...args: any[] ): L } ): boolean {
@@ -329,10 +325,7 @@ class DJClass {
     push( this, ...elements )
   }
 
-  each ( f: ( this: this ) => void ): this
-  each ( f: ( this: this, entry: HTMLElement ) => void ): this
-  each ( f: ( this: this, entry: HTMLElement, index: number ) => void ): this
-  each ( f: any ): this {
+  each ( f: ( this: this, entry: HTMLElement, index: number ) => void ): this {
     forEach( this, f, this )
 
     return this
@@ -353,12 +346,11 @@ class DJClass {
   }
 
   filter ( selector: string ): DJClass
-  filter ( f: ( this: this ) => boolean ): DJClass
-  filter ( f: ( this: this, entry: DJClass ) => boolean ): DJClass
-  filter ( f: ( this: this, entry: DJClass, index: number ) => boolean ): DJClass
+  filter ( f: ( this: this, entry: DJClass, index: number, array: Array<DJClass> ) => boolean ): DJClass
   filter ( entry: any ): DJClass {
     if ( 'string' === typeof entry ) {
-      return combinator( ...this.explode().filter( function ( this: string, e: DJClass ) { return e.is( this.valueOf() ) }, entry ) )
+      return combinator( ...filter( this.explode(), function ( e ): boolean { return e.is( this.valueOf() ) }, entry ) )
+      // return combinator( ...this.explode().filter( function ( this: string, e: DJClass ) { return e.is( this.valueOf() ) }, entry ) )
     }
     else {
       return combinator( ...this.explode().filter( entry, this ) )
@@ -391,6 +383,18 @@ class DJClass {
     else {
       return this.element( 0 )?.innerHTML
     }
+  }
+
+  hide () {
+    this.each( ( e ) => {
+      e.hidden = true
+    } )
+  }
+
+  unhide () {
+    this.each( ( e ) => {
+      e.hidden = false
+    } )
   }
 }
 
@@ -447,6 +451,10 @@ const DJAccess: IDJ = <any> new Proxy( DJClass, {
 } )
 
 export { DJClass, DJAccess }
+
+namespace DJClass {
+  export const Enums = {}
+}
 
 Types.DJ = DJ
 
@@ -585,23 +593,6 @@ DJ.prototype.element = function ( val ) {
   if ( val < 0 ) val = length - val
 
   return this[ val ]
-}
-
-// Returns the element at a certain index as a DJ object. Reversible.
-DJ.prototype.index = function ( val ) {
-  var newDJ = new initialise( this.element( val ) )
-  newDJ.original = this
-  return newDJ
-}
-
-// Returns the first element in the DJ collection as a DJ object. Reversible.
-DJ.prototype.first = function () {
-  return this.index( 0 )
-}
-
-// Returns the last element in the DJ collection as a DJ object. Reversible.
-DJ.prototype.last = function () {
-  return this.index( -1 )
 }
 
 // Returns the previous DJ object
