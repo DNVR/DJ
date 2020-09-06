@@ -1,5 +1,5 @@
 import {
-  push, forEach, filter, map, concat
+  push, forEach, filter, map, concat, some
 } from '@dnvr/array-methods'
 
 // Common strings
@@ -261,6 +261,11 @@ function combinator ( ...entry: DJClass[] ): DJClass {
   return new DJClass( concat( ...entry ) )
 }
 
+type Class<T = any> = {
+  new( ...args: any[] ): T
+  prototype: T
+}
+
 class DJClass {
 
   [ index: number ]: HTMLElement
@@ -270,9 +275,17 @@ class DJClass {
 
   static isNull = isNull
 
-  static instanceOf<K extends L, L> ( candidate: K, clas: { new( ...args: any[] ): L } ): true
-  static instanceOf<K, L> ( candidate: K, clas: { new( ...args: any[] ): L } ): boolean {
-    return candidate instanceof clas
+  static instanceOf<K, L> ( candidate: K, clas: Class<L> ): K extends L ? true : false
+  static instanceOf<K, L> ( candidate: K, clas: Array<Class> ): boolean
+  static instanceOf<K, L> ( candidate: K, clas: Class<L> | Array<Class> ): boolean {
+    if ( 'function' !== typeof clas ) {
+      return some( clas, function ( e ) {
+        return DJClass.instanceOf( this, e )
+      }, candidate )
+    }
+    else {
+      return candidate instanceof clas
+    }
   }
 
   constructor ()
