@@ -70,7 +70,7 @@ var checkIfInstanceOf = function ( val, struct ) {
   return struct.constructor === Array ? struct.some( function ( entry ) { return checkIfInstanceOf( val, entry ) } ) : val instanceof struct
 }
 
-let camelCase = ( function () {
+const camelCase = ( function () {
 
   const hyphenCase = /-([a-z])/g
 
@@ -84,20 +84,21 @@ let camelCase = ( function () {
 
 } )()
 
-let hyphenCase = ( function () {
+const hyphenCase = ( function () {
 
   const camelCase = /([A-Z])/g
 
   const hyphenCaseReplacement = function ( s: string ) {
     return '-' + s.toLowerCase()
   }
+
   return function hyphenCase ( s: string ) {
     return s.replace( camelCase, hyphenCaseReplacement )
   }
 
 } )()
 
-var setProp = function ( prop, val ) {
+function setProp ( this: any, prop: string, val: any ) {
   Object.defineProperty( this, prop, {
     get: function () {
       return val
@@ -275,10 +276,6 @@ class DJClass {
   [ index: number ]: HTMLElement
   length: number = 0
 
-  static isUndefined = isUndefined
-
-  static isNull = isNull
-
   static instanceOf<K, L> ( candidate: K, clas: Class<L> ): K extends L ? true : false
   static instanceOf<K, L> ( candidate: K, clas: Array<Class> ): boolean
   static instanceOf<K, L> ( candidate: K, clas: Class<L> | Array<Class> ): boolean {
@@ -403,16 +400,20 @@ class DJClass {
   }
 
   hide () {
-    this.each( ( e ) => {
-      e.hidden = true
-    } )
+    return this.each( hide )
   }
 
   unhide () {
-    this.each( ( e ) => {
-      e.hidden = false
-    } )
+    return this.each( unhide )
   }
+}
+
+function hide ( this: DJClass, e: HTMLElement ) {
+  e.hidden = true
+}
+
+function unhide ( this: DJClass, e: HTMLElement ) {
+  e.hidden = false
 }
 
 let k: DJClass = new DJClass
@@ -470,6 +471,14 @@ const DJAccess: IDJ = <any> new Proxy( DJClass, {
 export { DJClass, DJAccess }
 
 namespace DJClass {
+  export function isUndefined ( candidate: any ): candidate is undefined {
+    return undefined === candidate
+  }
+
+  export function isNull (candidate: any): candidate is null {
+    return null === candidate
+  }
+
   export const Enums = {}
 }
 
