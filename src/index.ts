@@ -49,9 +49,6 @@ var Types = {
   RegExp: /0/.constructor
 }
 
-var Object = Types.Object
-var Array = Types.Array
-
 /*
 * --------------------------------------------------
 * End of Types
@@ -73,24 +70,31 @@ var checkIfInstanceOf = function ( val, struct ) {
   return struct.constructor === Array ? struct.some( function ( entry ) { return checkIfInstanceOf( val, entry ) } ) : val instanceof struct
 }
 
-var camelCase = ( function () {
-  var hyphenCase = /-([a-z])/g
-  var camelCase = function ( str, first ) {
+let camelCase = ( function () {
+
+  const hyphenCase = /-([a-z])/g
+
+  const camelCaseReplacement = function ( _s: string, first: string ) {
     return first.toUpperCase()
   }
-  return function ( str ) {
-    return str.replace( hyphenCase, camelCase )
+
+  return function camelCase ( s: string ) {
+    return s.replace( hyphenCase, camelCaseReplacement )
   }
+
 } )()
 
-var hyphenCase = ( function () {
-  var camelCase = /([A-Z])/g
-  var hyphenCase = function ( str ) {
-    return '-' + str.toLowerCase()
+let hyphenCase = ( function () {
+
+  const camelCase = /([A-Z])/g
+
+  const hyphenCaseReplacement = function ( s: string ) {
+    return '-' + s.toLowerCase()
   }
-  return function ( str ) {
-    return str.replace( camelCase, hyphenCase )
+  return function hyphenCase ( s: string ) {
+    return s.replace( camelCase, hyphenCaseReplacement )
   }
+
 } )()
 
 var setProp = function ( prop, val ) {
