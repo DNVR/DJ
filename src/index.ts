@@ -276,19 +276,6 @@ class DJClass {
   [ index: number ]: HTMLElement
   length: number = 0
 
-  static instanceOf<K, L> ( candidate: K, clas: Class<L> ): K extends L ? true : false
-  static instanceOf<K, L> ( candidate: K, clas: Array<Class> ): boolean
-  static instanceOf<K, L> ( candidate: K, clas: Class<L> | Array<Class> ): boolean {
-    if ( 'function' !== typeof clas ) {
-      return some( clas, function ( e ) {
-        return DJClass.instanceOf( this, e )
-      }, candidate )
-    }
-    else {
-      return candidate instanceof clas
-    }
-  }
-
   constructor ()
   constructor ( element: HTMLElement )
   constructor ( array: ArrayLike<HTMLElement> )
@@ -471,12 +458,30 @@ const DJAccess: IDJ = <any> new Proxy( DJClass, {
 export { DJClass, DJAccess }
 
 namespace DJClass {
+
+  export function is<K, L> ( candidate: K, clas: Class<L> ): K extends L ? true : false
+  export function is ( candidate: any, clas: Class ): boolean {
+    return candidate instanceof clas
+  }
+
   export function isUndefined ( candidate: any ): candidate is undefined {
     return undefined === candidate
   }
 
-  export function isNull (candidate: any): candidate is null {
+  export function isNull ( candidate: any ): candidate is null {
     return null === candidate
+  }
+
+  export function isString ( candidate: any ): candidate is string {
+    return 'string' === typeof candidate || !( isUndefined( candidate ) || isNull( candidate ) ) && candidate.constructor === String
+  }
+
+  export function isNumber ( candidate: any ): candidate is number {
+    return 'number' === typeof candidate || !( isUndefined( candidate ) || isNull( candidate ) ) && candidate.constructor === Number
+  }
+
+  export function isBoolean ( candidate: any ): candidate is boolean {
+    return 'boolean' === typeof candidate || !( isUndefined( candidate ) || isNull( candidate ) ) && candidate.constructor === Boolean
   }
 
   export const Enums = {}
