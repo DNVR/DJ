@@ -403,8 +403,6 @@ function unhide ( this: DJClass, e: HTMLElement ) {
   e.hidden = false
 }
 
-let k: DJClass = new DJClass
-
 interface IDJ {
   new(): DJClass
   new( element: HTMLElement ): DJClass
