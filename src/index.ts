@@ -482,6 +482,10 @@ namespace DJClass {
     return 'boolean' === typeof candidate || !( isUndefined( candidate ) || isNull( candidate ) ) && candidate.constructor === Boolean
   }
 
+  export function isRegExp ( candidate: any ): candidate is RegExp {
+    return !( isUndefined( candidate ) || isNull( candidate ) ) && candidate.constructor === RegExp
+  }
+
   export const Enums = {}
 }
 
@@ -499,10 +503,10 @@ DJ.Extend = Extend
 
 DJ.Types = Types
 
-DJ.Proxy = function ( fnctn, proxyThis ) {
+DJ.Proxy = function ( f, proxyThis ) {
   var args = internalMethods.slice.call( arguments, 2 )
   var functn = function () {
-    fnctn.apply( proxyThis || this, args.concat( internalMethods.slice.call( arguments ) ) )
+    f.apply( proxyThis || this, args.concat( internalMethods.slice.call( arguments ) ) )
   }
   return functn
 }
