@@ -322,8 +322,10 @@ class DJClass {
     return this.index( -1 )
   }
 
-  add ( ...elements: HTMLElement[] ) {
+  add ( ...elements: HTMLElement[] ): this {
     push( this, ...elements )
+
+    return this
   }
 
   each ( f: ( this: this, entry: HTMLElement, index: number ) => void ): this {
