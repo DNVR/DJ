@@ -528,12 +528,6 @@ DJ.prototype.splice = internalMethods.splice
 DJ.isUndefined = isUndefined
 DJ.isNull = isNull
 
-getOwnPropertyNames( Types ).forEach( function ( entry ) {
-  DJ[ 'is' + entry ] = function ( val ) {
-    return ( !( isNull( val ) || isUndefined( val ) ) ) && ( checkIfInstanceOf( val, Types[ entry ] ) || val.constructor === Types[ entry ] )
-  }
-} )
-
 freeze( Types )
 
 // The constructor for a DJ object. Accepts CSS selector, HTMLElement, HTMLCollection and NodeList.
