@@ -534,14 +534,6 @@ getOwnPropertyNames( Types ).forEach( function ( entry ) {
   }
 } )
 
-DJ.isString = function ( val ) {
-  return ( !( DJ.isNull( val ) || DJ.isUndefined( val ) ) ) && ( checkIfInstanceOf( val, String ) || val.constructor === String )
-}
-
-DJ.isNumber = function ( val ) {
-  return ( !( DJ.isNull( val ) || DJ.isUndefined( val ) ) ) && ( checkIfInstanceOf( val, Number ) || val.constructor === Number )
-}
-
 freeze( Types )
 
 // The constructor for a DJ object. Accepts CSS selector, HTMLElement, HTMLCollection and NodeList.
