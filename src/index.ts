@@ -541,9 +541,6 @@ DJ.isString = function ( val ) {
 DJ.isNumber = function ( val ) {
   return ( !( DJ.isNull( val ) || DJ.isUndefined( val ) ) ) && ( checkIfInstanceOf( val, Number ) || val.constructor === Number )
 }
-DJ.isBoolean = function ( val ) {
-  return ( !( DJ.isNull( val ) || DJ.isUndefined( val ) ) ) && ( checkIfInstanceOf( val, Boolean ) || val.constructor === Boolean )
-}
 
 freeze( Types )
 
