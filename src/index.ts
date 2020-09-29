@@ -525,8 +525,6 @@ DJ.prototype.splice = internalMethods.splice
 * Available methods are DJ.isUndefined, DJ.isNull, DJ.isObject, DJ.isFunction, DJ.isString, DJ.isNumber, DJ.isArray, DJ.isBoolean, DJ.isRegExp and DJ.isDJ
 * ==================================================
 */
-DJ.isUndefined = isUndefined
-DJ.isNull = isNull
 
 freeze( Types )
 
