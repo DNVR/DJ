@@ -516,16 +516,6 @@ DJ.Proxy = function ( f, proxyThis ) {
 // Done only to make the DJ object look like an array in Chrome and Safari
 DJ.prototype.splice = internalMethods.splice
 
-
-/*
-* ==================================================
-* Type checker functions
-* --------------------------------------------------
-* This is used to store arbitrary data with arbitrary keys.
-* Available methods are DJ.isUndefined, DJ.isNull, DJ.isObject, DJ.isFunction, DJ.isString, DJ.isNumber, DJ.isArray, DJ.isBoolean, DJ.isRegExp and DJ.isDJ
-* ==================================================
-*/
-
 freeze( Types )
 
 // The constructor for a DJ object. Accepts CSS selector, HTMLElement, HTMLCollection and NodeList.
