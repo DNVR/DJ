@@ -613,21 +613,6 @@ DJ.prototype.add = function ( selector ) {
   return newDJ
 }
 
-// Returns a new DJ object that contains only elements of the original that match the selector. Reversible.
-DJ.prototype.filter = function ( selector, out ) {
-  var newDJ = new initialise()
-
-  newDJ.original = this
-
-  this.each( function () {
-    if ( out ^ this.matches( selector ) ) {
-      internalMethods.add.call( newDJ, this )
-    }
-  } )
-
-  return newDJ
-}
-
 // Returns a new DJ object that contains only elements of the original that do not match the selector. Reversible.
 DJ.prototype.not = function ( selector ) {
   return this.filter( selector, true )
