@@ -789,23 +789,23 @@ DJ.prototype.attr = function ( attr, value ) {
 // Returns aria attribute value if aria attribute name is specified. Not chainable.
 // Sets aria attribute value for each element if value is speficied and returns DJ object. Chainable.
 // Removes aria attribute of each element if value is explicitly set to undefined. Chainable.
-DJ.prototype.aria = function ( attr, value ) {
-  if ( isUndefined( value ) ) {
-    if ( arguments.length < 2 ) {
-      return this.element( 0 ).getAttribute( 'aria-' + attr )
-    }
-    else {
-      return this.each( function () {
-        this.removeAttribute( 'aria-' + attr )
-      } )
-    }
-  }
-  else {
-    return this.each( function () {
-      this.setAttribute( 'aria-' + attr, value )
-    } )
-  }
-}
+// DJ.prototype.aria = function ( attr, value ) {
+//   if ( isUndefined( value ) ) {
+//     if ( arguments.length < 2 ) {
+//       return this.element( 0 ).getAttribute( 'aria-' + attr )
+//     }
+//     else {
+//       return this.each( function () {
+//         this.removeAttribute( 'aria-' + attr )
+//       } )
+//     }
+//   }
+//   else {
+//     return this.each( function () {
+//       this.setAttribute( 'aria-' + attr, value )
+//     } )
+//   }
+// }
 
 // Returns live dataset of first element if attribute name is not specified. Not chainable.
 // Returns dataset attribute value if attribute name is specified. Not chainable.
