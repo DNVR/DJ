@@ -811,25 +811,25 @@ DJ.prototype.attr = function ( attr, value ) {
 // Returns dataset attribute value if attribute name is specified. Not chainable.
 // Sets dataset attribute value for each element if value is speficied and returns DJ object. Chainable.
 // Removes dataset attributes of each element if value is explicitly set to undefined. Chainable.
-DJ.prototype.data = function ( attr, value ) {
-  switch ( arguments.length ) {
-    case 0:
-      return this.element( 0 ).dataset
-    case 1:
-      return this.element( 0 ).dataset[ camelCase( attr ) ]
-    default:
-      if ( isUndefined( value ) ) {
-        return this.each( function () {
-          this.removeAttribute( 'data-' + hyphenCase( attr ) )
-        } )
-      }
-      else {
-        return this.each( function () {
-          this.dataset[ camelCase( attr ) ] = value
-        } )
-      }
-  }
-}
+// DJ.prototype.data = function ( attr, value ) {
+//   switch ( arguments.length ) {
+//     case 0:
+//       return this.element( 0 ).dataset
+//     case 1:
+//       return this.element( 0 ).dataset[ camelCase( attr ) ]
+//     default:
+//       if ( isUndefined( value ) ) {
+//         return this.each( function () {
+//           this.removeAttribute( 'data-' + hyphenCase( attr ) )
+//         } )
+//       }
+//       else {
+//         return this.each( function () {
+//           this.dataset[ camelCase( attr ) ] = value
+//         } )
+//       }
+//   }
+// }
 
 // Returns values of first element if value is not mentioned. Not chainable.
 // Sets value of the element if value is mentioned. Chainable.
