@@ -564,11 +564,6 @@ DJ.prototype.each = function ( fn ) {
 * These functions are not exposed to the public scope.
 * ==================================================
 */
-internalMethods.add = function ( entry ) {
-  if ( internalMethods.indexOf.call( this, entry ) < 0 ) {
-    internalMethods.push.call( this, entry )
-  }
-}
 internalMethods.unique = function () {
   var i = this.length
   while ( i-- ) {
