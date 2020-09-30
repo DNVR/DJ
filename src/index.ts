@@ -595,19 +595,6 @@ DJ.prototype.refresh = function () {
   return this
 }
 
-// Returns an HTMLElement at index. Not chainable.
-// Array notation can be used instead but elements with negative indices will not be accessible that way.
-DJ.prototype.element = function ( val ) {
-  var length = this.length
-
-  if ( !length ) return this
-
-  val = ( val | 0 ) % length
-  if ( val < 0 ) val = length - val
-
-  return this[ val ]
-}
-
 // Returns the previous DJ object
 DJ.prototype.back = function () {
   return this.original || this
