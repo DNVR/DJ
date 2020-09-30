@@ -870,16 +870,16 @@ DJ.prototype.value = function ( val ) {
 
 // Alters the HTML content of each element in a DJ object. Chainable.
 // Returns the HTML content of the first element if no parameter is passed. Not chainable.
-DJ.prototype.html = function ( str ) {
-  if ( DJ.isString( str ) ) {
-    return this.each( function () {
-      this.innerHTML = str
-    } )
-  }
-  else {
-    return this.element( 0 ).innerHTML
-  }
-}
+// DJ.prototype.html = function ( str ) {
+//   if ( DJ.isString( str ) ) {
+//     return this.each( function () {
+//       this.innerHTML = str
+//     } )
+//   }
+//   else {
+//     return this.element( 0 ).innerHTML
+//   }
+// }
 
 // For internal use only. Synthesises elements from HTML marked up string, NodeList, HTMLCollection and HTMLElement.
 internalMethods.synthElements = function ( content ) {
