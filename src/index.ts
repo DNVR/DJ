@@ -395,6 +395,10 @@ class DJClass {
   unhide () {
     return this.each( unhide )
   }
+
+  empty () {
+    return this.html( '' )
+  }
 }
 
 function hide ( this: DJClass, e: HTMLElement ) {
