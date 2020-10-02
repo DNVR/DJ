@@ -882,15 +882,15 @@ internalMethods.synthElements = function ( content ) {
 }
 
 // Clears any and all markup within each element. Chainable.
-DJ.prototype.empty = function () {
-  this.each( function () {
-    var me = this
-    internalMethods.forEachReverse.call( this.childNodes, function ( entry ) {
-      me.removeChild( entry )
-    } )
-  } )
-  return this
-}
+// DJ.prototype.empty = function () {
+//   this.each( function () {
+//     var me = this
+//     internalMethods.forEachReverse.call( this.childNodes, function ( entry ) {
+//       me.removeChild( entry )
+//     } )
+//   } )
+//   return this
+// }
 
 // Adds markup to each element.
 DJ.prototype.content = function ( content ) {
