@@ -388,6 +388,20 @@ class DJClass {
     }
   }
 
+  content ( h: string ): this
+  content ( h: HTMLElement ): this
+  content ( h: any ): this {
+    if ( 'string' === typeof h ) {
+      return this.html( h )
+    }
+    else {
+      return this.each( ( e ) => {
+        e.innerHTML = ''
+        e.appendChild( h.cloneNode( true ) )
+      } )
+    }
+  }
+
   hide () {
     return this.each( hide )
   }
