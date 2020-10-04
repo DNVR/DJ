@@ -348,6 +348,30 @@ class DJClass {
     }
   }
 
+  attr ( name: string ): string
+  attr ( name: string, value: null ): this
+  attr ( name: string, value: string ): this
+  attr ( name: string, value?: any ): any {
+    switch ( arguments.length ) {
+      case 1:
+        return this.element( 0 )?.getAttribute( name )
+        break
+
+      case 2:
+        if ( null === value ) {
+          this.each( ( e ) => {
+            e.removeAttribute( name )
+          } )
+        }
+        else {
+          this.each( ( e ) => {
+            e.setAttribute( name, value )
+          } )
+        }
+        break
+    }
+  }
+
   filter ( selector: string ): DJClass
   filter ( f: ( this: this, entry: DJClass, index: number, array: Array<DJClass> ) => boolean ): DJClass
   filter ( entry: any ): DJClass {
