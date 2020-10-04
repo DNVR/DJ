@@ -355,7 +355,6 @@ class DJClass {
     switch ( arguments.length ) {
       case 1:
         return this.element( 0 )?.getAttribute( name )
-        break
 
       case 2:
         if ( null === value ) {
