@@ -371,6 +371,17 @@ class DJClass {
     }
   }
 
+  style ( name: keyof CSSStyleDeclaration, value: string ): this {
+    if ( name === 'length' || name === 'parentRule' || name === 'setProperty' || name === 'removeProperty' || name === 'getPropertyValue' || name === 'getPropertyPriority' || name === 'item' ) {
+      return this
+    }
+    else {
+      return this.each( e => {
+        e.style[ name ] = value
+      } )
+    }
+  }
+
   filter ( selector: string ): DJClass
   filter ( f: ( this: this, entry: DJClass, index: number, array: Array<DJClass> ) => boolean ): DJClass
   filter ( entry: any ): DJClass {
