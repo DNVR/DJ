@@ -1001,12 +1001,6 @@ DJ.prototype.after = function ( content ) {
   return this
 }
 
-/*
-* --------------------------------------------------
-* End of content manipulation
-* --------------------------------------------------
-*/
-
 
 
 /*
