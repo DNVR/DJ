@@ -543,8 +543,6 @@ namespace DJClass {
   export const Enums = {}
 }
 
-Types.DJ = DJ
-
 DJ.Enums = {}
 
 DJ.Discovered = {}
@@ -897,15 +895,6 @@ DJ.prototype.value = function ( val ) {
     } )
   }
 }
-
-/*
-* ==================================================
-* Content manipulation
-* --------------------------------------------------
-* Used to manipulate DOM.
-* It can be accessed directly on an DJ instance.
-* ==================================================
-*/
 
 // For internal use only. Synthesises elements from HTML marked up string, NodeList, HTMLCollection and HTMLElement.
 internalMethods.synthElements = function ( content ) {
