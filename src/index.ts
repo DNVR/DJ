@@ -1013,7 +1013,6 @@ DJ.prototype.after = function ( content ) {
 * The .attach() method is capable of event delegation and returning the delegating function through the release flag.
 * ==================================================
 */
-var CustomEvent = window.CustomEvent
 var Event = window.Event
 
 var stopPropagation = CustomEvent.prototype.stopPropagation
