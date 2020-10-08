@@ -1097,26 +1097,6 @@ DJ.prototype.hover = function ( fnOver, fnOut ) {
   return this.mouseover( fnOver ).mouseout( fnOut || fnOver )
 }
 
-/*
-* --------------------------------------------------
-* End of events
-* --------------------------------------------------
-*/
-
-
-
-/*
-* ==================================================
-* Special events for window and document
-* --------------------------------------------------
-* Used to add listeners to scroll and resize events of window.
-* It can be accessed directly on the DJ object.
-*
-* The DOMContentLoaded event can be listened to through .load() on the DJ object.
-* It has a fallback in case the DOM content is alread loaded.
-* ==================================================
-*/
-
 // Attaches functions to the scroll and resize events of the window object. These events cannot be triggered by simply calling the function without arguments.
 internalMethods.forEach.call( [ 'scroll', 'resize' ], function ( entry ) {
   DJ[ entry ] = function ( fn ) {
