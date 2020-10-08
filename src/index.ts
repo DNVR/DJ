@@ -1014,13 +1014,6 @@ DJ.prototype.after = function ( content ) {
 * ==================================================
 */
 
-var stopPropagation = CustomEvent.prototype.stopPropagation
-
-CustomEvent.prototype.stopPropagation = function () {
-  this.cancelBubble = true
-  stopPropagation.call( this )
-}
-
 // Triggers a custom event based on the message passed. Accepts a message string or an event object. Bubbles. Chainable.
 DJ.prototype.trigger = function ( message, detail, params ) {
   if ( DJ.isObject( params ) ) params.detail = detail
