@@ -543,8 +543,6 @@ namespace DJClass {
   export const Enums = {}
 }
 
-Types.DJ = DJ
-
 DJ.Enums = {}
 
 DJ.Discovered = {}
