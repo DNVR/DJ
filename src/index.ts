@@ -1001,19 +1001,6 @@ DJ.prototype.after = function ( content ) {
   return this
 }
 
-
-
-/*
-* ==================================================
-* Event handlers
-* --------------------------------------------------
-* Used to add listeners to every matched element.
-* It can be accessed directly on an DJ instance.
-*
-* The .attach() method is capable of event delegation and returning the delegating function through the release flag.
-* ==================================================
-*/
-
 // Triggers a custom event based on the message passed. Accepts a message string or an event object. Bubbles. Chainable.
 DJ.prototype.trigger = function ( message, detail, params ) {
   if ( DJ.isObject( params ) ) params.detail = detail
