@@ -1126,8 +1126,6 @@ DJ.load = function ( fn ) {
 * ==================================================
 */
 
-var contains = 'contains'
-
 var getComputedStyle = window.getComputedStyle
 
 var Style = {}
