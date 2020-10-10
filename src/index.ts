@@ -1132,7 +1132,7 @@ var Style = {}
 
 var allStyles = getOwnPropertyNames( fakeElement.style )
 
-var vendorCheck = ( internalMethods.slice.call( getComputedStyle( document.documentElement ) ).join( empty ).match( /-(webkit|moz|ms)-/ ) || [ empty, empty ] )[ 1 ]
+let vendorCheck = ( internalMethods.slice.call( getComputedStyle( document.documentElement ) ).join( empty ).match( /-(webkit|moz|ms)-/ ) || [ empty, empty ] )[ 1 ]
 
 setProp.call( DJ.Discovered, 'Vendor', vendorCheck )
 
