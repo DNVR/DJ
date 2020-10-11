@@ -1153,7 +1153,7 @@ getOwnPropertyNames( Style ).forEach( function ( entry ) {
     delete Style[ entry ]
   }
 } )
-freeze( Style )
+// freeze( Style )
 
 DJ.Enums.Style = Style
 
