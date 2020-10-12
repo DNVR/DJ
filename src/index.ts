@@ -1130,7 +1130,7 @@ var getComputedStyle = window.getComputedStyle
 
 var Style = {}
 
-var allStyles = getOwnPropertyNames( fakeElement.style )
+let allStyles = getOwnPropertyNames( fakeElement.style )
 
 let vendorCheck = ( internalMethods.slice.call( getComputedStyle( document.documentElement ) ).join( empty ).match( /-(webkit|moz|ms)-/ ) || [ empty, empty ] )[ 1 ]
 
