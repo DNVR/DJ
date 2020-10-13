@@ -1115,17 +1115,6 @@ DJ.load = function ( fn ) {
 * --------------------------------------------------
 */
 
-
-
-/*
-* ==================================================
-* Appearance alterations
-* --------------------------------------------------
-* Used to adjust styles and appearance attributes.
-* Shims non standard behaviours of DOMTokenList
-* ==================================================
-*/
-
 var getComputedStyle = window.getComputedStyle
 
 var Style = {}
