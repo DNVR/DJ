@@ -1117,7 +1117,7 @@ DJ.load = function ( fn ) {
 
 var getComputedStyle = window.getComputedStyle
 
-var Style = {}
+let Style = {}
 
 let allStyles = getOwnPropertyNames( fakeElement.style )
 
