@@ -1127,7 +1127,7 @@ setProp.call( DJ.Discovered, 'Vendor', vendorCheck )
 
 // var vendorRegex = new Types.RegExp( '^' + vendorCheck + '([A-Z])' )
 
-var newStyleAttribute = function ( full, first ) {
+let newStyleAttribute = function ( full, first ) {
   return first.toLowerCase()
 }
 
