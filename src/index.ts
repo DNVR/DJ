@@ -1125,7 +1125,7 @@ let vendorCheck = ( internalMethods.slice.call( getComputedStyle( document.docum
 
 setProp.call( DJ.Discovered, 'Vendor', vendorCheck )
 
-var vendorRegex = new Types.RegExp( '^' + vendorCheck + '([A-Z])' )
+// var vendorRegex = new Types.RegExp( '^' + vendorCheck + '([A-Z])' )
 
 var newStyleAttribute = function ( full, first ) {
   return first.toLowerCase()
