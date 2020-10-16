@@ -1144,7 +1144,7 @@ getOwnPropertyNames( Style ).forEach( function ( entry ) {
 } )
 // freeze( Style )
 
-DJ.Enums.Style = Style
+// DJ.Enums.Style = Style
 
 // Without arguments, returns the style object of the first element. Not chainable.
 // Returns the computed CSS property of the first element if attribute is present. Not chainable.
